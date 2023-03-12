@@ -1,0 +1,23 @@
+class Solution:
+    def minimumRecolors(self, blocks: str, k: int) -> int:
+        n=len(blocks)
+        ans=1000
+        count=0
+        ws=0
+        we=0
+        while we<n:
+            if we-ws==k:
+                ans=min(ans,count)
+                if blocks[ws]=="W":
+                    count-=1
+                ws+=1
+                if blocks[we]=="W":
+                    count+=1
+                we+=1
+            if we-ws<k:
+                ch=blocks[we]
+                if ch=="W":
+                    count+=1
+                we+=1
+        ans=min(ans,count)
+        return ans
